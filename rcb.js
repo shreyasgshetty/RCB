@@ -17,7 +17,6 @@ let intervalId = null; // to stop polling
 
 // 🔊 Start looping MP3 using ffplay
 // 🔊 Start looping MP3 using VLC\
-
 function sendTelegramAlert() {
   CHAT_IDS.forEach(chatId => {
     for (let i = 0; i < 10; i++) {
