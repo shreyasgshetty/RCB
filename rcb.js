@@ -80,7 +80,7 @@ function fetchData() {
         const currentResponse = JSON.stringify(json);
 
         // ✅ CORRECT change detection
-        if (lastResponse && currentResponse !== lastResponse) {
+        if (lastResponse ) {
           clearInterval(intervalId);
           sendTelegramAlert();            // 🔊 START alarm
           return;
