@@ -1,7 +1,8 @@
 const https = require('https');
 const { spawn } = require('child_process');
 const axios = require('axios');
-
+const FormData = require('form-data');
+const fs = require('fs');
 const BOT_TOKEN = '8599704447:AAFZNMPMA-3H0W7z8T0i8iovSTYFhsQMx_k';
 const CHAT_ID = '6533691877';
 const url = 'https://rcbscaleapi.ticketgenie.in/ticket/eventlist/O';
@@ -15,10 +16,15 @@ let intervalId = null; // to stop polling
 // 🔊 Start looping MP3 using VLC\
 
 function sendTelegramAlert() {
-  return axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendAudio`, {
-    chat_id: CHAT_ID,
-    audio: 'https://www.soundjay.com/misc/sounds/alarm-clock-01.mp3'
-  });
+  const form = new FormData();
+  form.append('chat_id', CHAT_ID);
+  form.append('audio', fs.createReadStream('./audio.mp3'));
+
+  axios.post(
+    `https://api.telegram.org/bot${BOT_TOKEN}/sendAudio`,
+    form,
+    { headers: form.getHeaders() }
+  ).catch(err => console.error(err.response?.data || err.message));
 }
 
 function startAlarm() {
@@ -75,7 +81,7 @@ function fetchData() {
         const currentResponse = JSON.stringify(json);
 
         // ✅ CORRECT change detection
-        if (lastResponse && lastResponse !== currentResponse) {
+        if (lastResponse) {
           clearInterval(intervalId);
           sendTelegramAlert();  
           startAlarm();              // 🔊 START alarm
