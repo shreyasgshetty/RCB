@@ -6,7 +6,9 @@ const fs = require('fs');
 const BOT_TOKEN = '8599704447:AAFZNMPMA-3H0W7z8T0i8iovSTYFhsQMx_k';
 const CHAT_IDS = [
   '6533691877',   // your phone
-  '8137670107' // other device / person
+  '8137670107',
+  '1736583692',
+  '5055670024' // other device / person
 ];
 const url = 'https://rcbscaleapi.ticketgenie.in/ticket/eventlist/O';
 
