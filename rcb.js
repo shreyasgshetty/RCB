@@ -4,7 +4,10 @@ const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
 const BOT_TOKEN = '8599704447:AAFZNMPMA-3H0W7z8T0i8iovSTYFhsQMx_k';
-const CHAT_ID = '6533691877';
+const CHAT_IDS = [
+  '6533691877',   // your phone
+  '8137670107' // other device / person
+];
 const url = 'https://rcbscaleapi.ticketgenie.in/ticket/eventlist/O';
 
 let lastResponse = null;
@@ -16,14 +19,16 @@ let intervalId = null; // to stop polling
 // 🔊 Start looping MP3 using VLC\
 
 function sendTelegramAlert() {
-  for (let i = 0; i < 10; i++) {
-    setTimeout(() => {
-      axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        chat_id: CHAT_ID,
-        text: '🚨 RCB TICKETS AVAILABLE 🚨'
-      });
-    }, i * 1000);
-  }
+  CHAT_IDS.forEach(chatId => {
+    for (let i = 0; i < 10; i++) {
+      setTimeout(() => {
+        axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          chat_id: chatId,
+          text: '🚨 RCB TICKETS AVAILABLE 🚨'
+        }).catch(err => console.error(err.response?.data || err.message));
+      }, i * 1000);
+    }
+  });
 }
 
 function startAlarm() {
