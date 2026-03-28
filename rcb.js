@@ -83,8 +83,7 @@ function fetchData() {
         // ✅ CORRECT change detection
         if (lastResponse) {
           clearInterval(intervalId);
-          sendTelegramAlert();  
-          startAlarm();              // 🔊 START alarm
+          sendTelegramAlert();            // 🔊 START alarm
           return;
         }
 
@@ -106,15 +105,3 @@ intervalId = setInterval(fetchData, 1000);
 
 
 // 🛑 Stop alarm with any key press
-process.stdin.setRawMode(true);
-process.stdin.resume();
-process.stdin.on('data', () => {
-  console.log('🛑 Alarm stopped');
-  alarmPlaying = false;
-
-  if (alarmProcess) {
-    alarmProcess.kill('SIGKILL');
-  }
-
-  process.exit();
-});
