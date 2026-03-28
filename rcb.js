@@ -28,7 +28,7 @@ function sendTelegramAlert() {
 
 function startAlarm() {
   if (alarmPlaying) return;
-  alarmPlaying = true;
+  alarmPlaying = true; 
 
   console.log('🚨 CHANGE DETECTED! STOPPING FETCH & PLAYING ALARM 🚨');
 
