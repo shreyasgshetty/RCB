@@ -25,7 +25,7 @@ function sendTelegramAlert() {
           chat_id: chatId,
           text: '🚨 RCB TICKETS AVAILABLE 🚨'
         }).catch(err => console.error(err.response?.data || err.message));
-      }, i * 1000);
+      }, i * 5000);
     }
   });
 }
