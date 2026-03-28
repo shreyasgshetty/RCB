@@ -16,15 +16,14 @@ let intervalId = null; // to stop polling
 // 🔊 Start looping MP3 using VLC\
 
 function sendTelegramAlert() {
-  const form = new FormData();
-  form.append('chat_id', CHAT_ID);
-  form.append('audio', fs.createReadStream('./audio.mp3'));
-
-  axios.post(
-    `https://api.telegram.org/bot${BOT_TOKEN}/sendAudio`,
-    form,
-    { headers: form.getHeaders() }
-  ).catch(err => console.error(err.response?.data || err.message));
+  for (let i = 0; i < 50; i++) {
+    setTimeout(() => {
+      axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        chat_id: CHAT_ID,
+        text: '🚨 RCB TICKETS AVAILABLE 🚨'
+      });
+    }, i * 1000);
+  }
 }
 
 function startAlarm() {
