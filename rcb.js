@@ -16,7 +16,9 @@ const CHAT_IDS = [
   '1999110250',
   '6768393827',
   '6859632939',
-  '5218771707'
+  '5218771707',
+  '6775590765',
+  '5179915191',
 ];
 const url = 'https://rcbscaleapi.ticketgenie.in/ticket/eventlist/O';
 
