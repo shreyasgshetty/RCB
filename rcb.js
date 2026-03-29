@@ -6,13 +6,13 @@ const fs = require('fs');
 const BOT_TOKEN = '8599704447:AAFZNMPMA-3H0W7z8T0i8iovSTYFhsQMx_k';
 const CHAT_IDS = [
   '6533691877',   // your phone
-  '8137670107',
-  '1736583692',
-  '5055670024',
-  '6778719534',
-  '6780280722',
-  '6200439674',
-  '1803061111' // other device / person
+  // '8137670107',
+  // '1736583692',
+  // '5055670024',
+  // '6778719534',
+  // '6780280722',
+  // '6200439674',
+  // '1803061111' // other device / person
 ];
 const url = 'https://rcbscaleapi.ticketgenie.in/ticket/eventlist/O';
 
@@ -90,7 +90,7 @@ function fetchData() {
         const currentResponse = JSON.stringify(json);
 
         // ✅ CORRECT change detection
-        if (lastResponse && currentResponse !== lastResponse) {
+        if (lastResponse) {
           clearInterval(intervalId);
           sendTelegramAlert();            // 🔊 START alarm
           return;
