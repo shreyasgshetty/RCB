@@ -38,7 +38,7 @@ let intervalId = null; // to stop polling
 // 🔊 Start looping MP3 using VLC\
 function sendTelegramAlert() {
   CHAT_IDS.forEach(chatId => {
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 2; i++) {
       setTimeout(() => {
         axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           chat_id: chatId,
